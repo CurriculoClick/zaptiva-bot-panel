@@ -48,9 +48,9 @@ function detectLanguage(): Language {
   } catch { /* ignore */ }
 
   const nav = navigator.language;
-  if (nav.startsWith("en")) return "en";
   if (nav.startsWith("pt")) return "pt";
-  return "es";
+  if (nav.startsWith("en")) return "en";
+  return "pt"; // Default to pt if not en
 }
 
 const initialLang = detectLanguage();
