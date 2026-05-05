@@ -66,38 +66,40 @@ function Login() {
           <GithubOutlined /> {t("Continuar con GitHub")}
         </button>
 
-        <div className={`border-b border-border w-full ${import.meta.env.DEV ? "" : "hidden"}`} />
+        <div className="border-b border-border w-full my-2" />
 
-        <form onSubmit={handleLogInWithEmail} className={`login-form ${import.meta.env.DEV ? "" : "hidden"}`}>
-          <label>
-            <div className="label">{t("Correo electrónico")}</div>
+        <form onSubmit={handleLogInWithEmail} className="flex flex-col gap-4">
+          <div className="flex flex-col gap-1">
+            <div className="text-sm font-medium text-muted-foreground">{t("Correo electrónico")}</div>
             <input
-              className="text"
-              placeholder="gori@gmail.com"
-              type="text"
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              placeholder="admin@zaptiva.com"
+              type="email"
               onChange={(e) => setEmail(e.target.value)}
               value={email}
+              required
             />
-          </label>
+          </div>
 
-          <label>
-            <div className="label">{t("Contraseña")}</div>
+          <div className="flex flex-col gap-1">
+            <div className="text-sm font-medium text-muted-foreground">{t("Contraseña")}</div>
             <input
-              className="text"
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
               placeholder="******"
               type="password"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
+              required
             />
-          </label>
+          </div>
 
           {message && (
-            <div className="self-center text-destructive text-md">{message}</div>
+            <div className="text-center text-destructive text-sm font-medium">{message}</div>
           )}
 
           <button
             type="submit"
-            className="primary w-full mt-[16px]"
+            className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 w-full"
           >
             {t("Entrar")}
           </button>
