@@ -12,9 +12,9 @@ export function isArchived(conv: ConversationRow, msg?: MessageRow) {
 
 export const Filters = {
   ALL: "todas",
-  UNREAD: "pendientes",
+  UNREAD: "pendentes",
   H24: "24h",
-  ARCHIVED: "archivadas",
+  ARCHIVED: "arquivadas",
 } as const;
 
 export type Filters = (typeof Filters)[keyof typeof Filters];
@@ -23,12 +23,12 @@ export const filters: {
   [key in Filters]: (conv: ConversationRow, msg?: MessageRow) => boolean;
 } = {
   todas: (conv, msg) => !isArchived(conv, msg),
-  pendientes: (conv, msg) =>
+  pendentes: (conv, msg) =>
     !isArchived(conv, msg) && msg?.direction === "incoming",
   "24h": (conv, msg) =>
     !isArchived(conv, msg) &&
     dayjs(msg?.timestamp || 0).isAfter(dayjs().subtract(1, "day")),
-  archivadas: (conv, msg) => isArchived(conv, msg),
+  arquivadas: (conv, msg) => isArchived(conv, msg),
 } as const;
 
 export type TemplateDraft = {
@@ -85,7 +85,7 @@ export const createUISlice: StateCreator<Partial<AppState>> = (
   filter: "todas" as keyof typeof filters,
   searchPattern: "",
   isLoading: false,
-  language: "es" as Language,
+  language: "pt" as Language,
   toggle: (component: keyof UIState, value?: boolean) =>
     set((state) => ({
       ui: {
